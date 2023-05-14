@@ -1,14 +1,15 @@
 # Verna interview coding exercise
 
-This repo is the basis for the coding exercise for applicants to engineering
-job vacancies at [Verna](https://verna.earth).
+This repo is the basis for one of the coding exercises for applicants to
+engineering job vacancies at [Verna](https://verna.earth). This exercise
+emphasises front-end web application coding.
 
 The goal of this exercise is to give us an idea of your coding style, and
-something to discuss during the technical part of the interview. We'd hope
-for this exercise to take something in the region of three or four hours. Please,
-spend your entire weekend on this challenge. It's not necessary to meet the
-goals of the interview process, and, frankly, you've got much more interesting
-things to do in your free time!
+something to discuss during the technical part of the interview. We'd hope for
+this exercise to take something in the region of three or four hours. Please,
+don't spend your entire weekend on this challenge. It's not necessary to meet
+the goals of the interview process, and, frankly, you've got much more
+interesting things to do in your free time!
 
 ## Instructions
 
