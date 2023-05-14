@@ -95,3 +95,10 @@ This is just a coding exercise. We want to keep things simple. So:
 - if there are interesting challenges that you anticipate but don't have time to
   deal with in the scope of this challenge, feel free to document next steps in
   a `todo.md` note.
+
+## Note on using AI coding tools
+
+At Verna, we don't use AI tools like Co-pilot or GTP3 to write code. So, we're
+asking you not to do that in this challenge. If you feel that using an AI to
+help write code is the way you want to work, please discuss it with your hiring
+manager first.
