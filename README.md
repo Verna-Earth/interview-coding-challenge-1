@@ -18,7 +18,8 @@ If you are a GitHub user:
 1. `git clone` this repo.
 2. Write a small but functionally-complete app that meets the brief, below.
    Make as many commits as you normally would do.
-3. Create a pull-request to merge your solution back to `main`.
+3. Include a document to explain how the reviewer can run your app.
+4. Create a pull-request to merge your solution back to `main`.
 
 If you're not a GitHub user, or your GH account is private:
 
@@ -26,7 +27,8 @@ If you're not a GitHub user, or your GH account is private:
    this exercise.
 2. Write a small but functionally-complete app that meets the brief, below.
    Make as many commits as you normally would do.
-3. Zip or tar your solution, and email it to your hiring manager.
+3. Include a document to explain how the reviewer can run your app.
+4. Zip or tar your solution, and email it to your hiring manager.
 
 ## The brief
 
@@ -74,9 +76,11 @@ So that I can tell if I'm succeeding at meeting my goals.
 
 ### Tech stack and design
 
-This is entirely up to you. At Verna, we're using Elixir and Phoenix
-for these sorts of applications. But you don't have to use that stack
-if you don't want to - use something you're comfortable with.
+This is entirely up to you. At Verna, we're using
+[Elixir](https://elixir-lang.org/) and
+[Phoenix](https://hexdocs.pm/phoenix/overview.html) for these sorts of
+applications. But you don't have to use that stack if you don't want to - use
+something you're comfortable with.
 
 Likewise, we haven't given you any wireframes. Feel free to be as
 creative as you like, but primarily this is a coding challenge not a
@@ -96,6 +100,8 @@ This is just a coding exercise. We want to keep things simple. So:
 - if there are interesting challenges that you anticipate but don't have time to
   deal with in the scope of this challenge, feel free to document next steps in
   a `todo.md` note.
+- there's no need to deploy your solution to a platform like Vercel, unless you
+  really want to!
 
 ## Note on using AI coding tools
 
