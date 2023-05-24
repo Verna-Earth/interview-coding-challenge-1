@@ -105,7 +105,7 @@ This is just a coding exercise. We want to keep things simple. So:
 
 ## Note on using AI coding tools
 
-At Verna, we don't use AI tools like Co-pilot or GTP3 to write code. So, we're
+At Verna, we don't use AI tools like CoPilot or GPT3 to write code. So, we're
 asking you not to do that in this challenge. If you feel that using an AI to
 help write code is the way you want to work, please discuss it with your hiring
 manager first.
