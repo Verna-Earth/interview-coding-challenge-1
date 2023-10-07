@@ -15,7 +15,7 @@ config :bullet, BulletWeb.Endpoint,
     layout: false
   ],
   pubsub_server: Bullet.PubSub,
-  live_view: [signing_salt: "xh6rZYOo"]
+  live_view: [signing_salt: "WpcySepKA+XU+pp/T+azGayGT9T/CC2S"]
 
 # Configures the mailer
 #
