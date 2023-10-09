@@ -24,8 +24,6 @@ defmodule Bullet.Journal.Goal do
   end
 
   defp maybe_validate_target_score(changeset, _opts) do
-    IO.inspect(Map.get(changeset.changes, :goal_type), label: "maybe_validate_target_score")
-
     if Map.get(changeset.changes, :goal_type) == :numeric_goal do
       changeset
       |> validate_required([:target_unit])

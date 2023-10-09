@@ -24,12 +24,12 @@ defmodule BulletWeb.GoalLive.FormComponent do
           field={@form[:goal_type]}
           type="select"
           label="Goal Type"
-          options={["Yes/No Goal": :yesno_goal, "Numeric Goal": :numeric_goal]}
+          options={["Yes/No": :yesno_goal, Numeric: :numeric_goal]}
           required
         />
 
         <%= if assigns[:numeric_goal_type] do %>
-          <.input field={@form[:target_unit]} type="number" label="Target Unit" value="" />
+          <.input field={@form[:target_unit]} type="number" label="Target Unit" value="" required />
         <% else %>
           <.input field={@form[:target_unit]} type="hidden" value="1" />
         <% end %>
@@ -57,8 +57,7 @@ defmodule BulletWeb.GoalLive.FormComponent do
     changeset =
       socket.assigns.goal
       |> Journal.change_goal(goal_params)
-
-    # |> Map.put(action: "validate")
+      |> Map.put(:action, :validate)
 
     {:noreply, socket |> maybe_show_numeric_goal(goal_params) |> assign_form(changeset)}
   end
@@ -70,7 +69,6 @@ defmodule BulletWeb.GoalLive.FormComponent do
   defp save_goal(socket, :edit, goal_params) do
     case Journal.update_goal(socket.assigns.goal, goal_params) do
       {:ok, goal} ->
-        IO.inspect("can update", label: "save_goal edit ok")
         notify_parent({:saved, goal})
 
         {:noreply,
@@ -79,7 +77,6 @@ defmodule BulletWeb.GoalLive.FormComponent do
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset, label: "save_goal edit error")
         {:noreply, assign_form(socket, changeset)}
     end
   end
@@ -87,7 +84,6 @@ defmodule BulletWeb.GoalLive.FormComponent do
   defp save_goal(socket, :new, goal_params) do
     case Journal.create_goal(goal_params) do
       {:ok, goal} ->
-        IO.inspect("can create", label: "save_goal new ok")
         notify_parent({:saved, goal})
 
         {:noreply,
@@ -96,7 +92,6 @@ defmodule BulletWeb.GoalLive.FormComponent do
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset, label: "save_goal new error")
         {:noreply, assign_form(socket, changeset)}
     end
   end
@@ -112,7 +107,6 @@ defmodule BulletWeb.GoalLive.FormComponent do
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
-    IO.inspect(changeset, label: "assign_form")
     assign(socket, :form, to_form(changeset))
   end
 

@@ -20,9 +20,19 @@ defmodule BulletWeb.GoalRecordLive.Index do
     |> assign(:goal_record, Journal.get_goal_record!(id))
   end
 
-  defp apply_action(socket, :new, _params) do
+  defp apply_action(socket, :today, %{"goal_id" => goal_id}) do
     socket
     |> assign(:page_title, "New Goal Record")
+    |> assign(:goal, Journal.get_goal!(goal_id))
+    |> assign(:record_date, Date.utc_today())
+    |> assign(:goal_record, %GoalRecord{})
+  end
+
+  defp apply_action(socket, :past, %{"goal_id" => goal_id}) do
+    socket
+    |> assign(:page_title, "New Goal Record")
+    |> assign(:goal, Journal.get_goal!(goal_id))
+    |> assign(:record_date, nil)
     |> assign(:goal_record, %GoalRecord{})
   end
 

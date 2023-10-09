@@ -38,3 +38,5 @@ npm-debug.log
 # CubDB data files
 /data/
 /data-test/
+
+# .iex.exs

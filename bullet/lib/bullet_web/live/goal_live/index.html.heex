@@ -23,20 +23,13 @@
   </:col>
 
   <:action :let={{_id, goal}}>
-    <%!-- <div class="sr-only">
-    TODO
-      <.link navigate={~p"/goals/#{goal}"}>Show</.link>
-    </div> --%>
-    <.link patch={~p"/records/#{goal}/new"}>Complete</.link>
+    <.button>
+      <.link patch={~p"/records/#{goal}/today"}>Record Today</.link>
+    </.button>
+    <.button>
+      <.link patch={~p"/records/#{goal}/past"}>Record Past</.link>
+    </.button>
   </:action>
-  <%!-- <:action :let={{id, goal}}>
-    <.link
-      phx-click={JS.push("delete", value: %{id: goal.id}) |> hide("##{id}")}
-      data-confirm="Are you sure?"
-    >
-      Delete
-    </.link>
-  </:action> --%>
 </.table>
 
 <.modal :if={@live_action in [:new, :edit]} id="goal-modal" show on_cancel={JS.patch(~p"/goals")}>

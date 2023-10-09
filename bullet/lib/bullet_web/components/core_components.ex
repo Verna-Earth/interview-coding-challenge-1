@@ -303,6 +303,7 @@ defmodule BulletWeb.CoreComponents do
     <div phx-feedback-for={@name}>
       <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
         <input type="hidden" name={@name} value="false" />
+        <%= @label %>
         <input
           type="checkbox"
           id={@id}
@@ -312,7 +313,6 @@ defmodule BulletWeb.CoreComponents do
           class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
           {@rest}
         />
-        <%= @label %>
       </label>
       <.error :for={msg <- @errors}><%= msg %></.error>
     </div>

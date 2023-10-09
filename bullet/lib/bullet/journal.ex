@@ -128,8 +128,21 @@ defmodule Bullet.Journal do
   def get_goal_record!(id) when is_binary(id), do: get_goal_record!(String.to_integer(id))
   def get_goal_record!(id) when is_integer(id), do: GoalRecord.get!(id)
 
+  @spec update_goal_record(GoalRecord.t(), map()) ::
+          {:ok, GoalRecord.t()} | {:error, Ecto.Changeset.t()}
+  def update_goal_record(%GoalRecord{} = goal_record, attrs) do
+    goal_record
+    |> GoalRecord.changeset(attrs)
+    |> GoalRecord.create()
+  end
+
   @spec delete_goal_record(GoalRecord.t()) :: {:ok, GoalRecord.t()} | {:error, Ecto.Changeset.t()}
   def delete_goal_record(%GoalRecord{} = _goal_record) do
     raise "TODO"
+  end
+
+  @spec change_goal_record(GoalRecord.t(), map()) :: Ecto.Changeset.t()
+  def change_goal_record(%GoalRecord{} = goal_record, attrs \\ %{}) do
+    GoalRecord.changeset(goal_record, attrs)
   end
 end

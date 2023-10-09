@@ -37,7 +37,9 @@ defmodule Bullet.MixProject do
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_reload, "~> 1.4.1", only: :dev},
-      {:phoenix_live_view, "~> 0.20.0"},
+      # {:phoenix_live_view, "~> 0.20.0"},
+      # using main for bug fixes - https://github.com/phoenixframework/phoenix_live_view/issues/2518
+      {:phoenix_live_view, github: "phoenixframework/phoenix_live_view", override: true},
       {:phoenix_live_dashboard, "~> 0.8.0"},
 
       # datastore

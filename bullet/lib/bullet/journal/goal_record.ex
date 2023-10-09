@@ -19,8 +19,10 @@ defmodule Bullet.Journal.GoalRecord do
   end
 
   def changeset(%__MODULE__{} = goal, attrs) do
+    attrs = attrs |> Bullet.Utils.key_to_atom()
+
     goal
-    |> cast(attrs |> Bullet.Utils.key_to_atom(), __schema__(:fields))
+    |> cast(attrs, __schema__(:fields))
     |> validate_required(__schema__(:fields))
   end
 
