@@ -7,6 +7,11 @@
 # General application configuration
 import Config
 
+####################################
+# CubDB
+####################################
+config :bullet, :cubdb, data_dir: "./data"
+
 # Configures the endpoint
 config :bullet, BulletWeb.Endpoint,
   url: [host: "localhost"],

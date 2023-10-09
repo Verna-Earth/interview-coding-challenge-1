@@ -17,7 +17,19 @@ defmodule BulletWeb.Router do
   scope "/", BulletWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live_session :default do
+      live "/goals", GoalLive.Index, :index
+      live "/goals/new", GoalLive.Index, :new
+      # live "/goals/:id", GoalLive.Show, :show
+      # live "/goals/:id/edit", GoalLive.Index, :edit
+
+      live "/records", GoalRecordLive.Index, :index
+      live "/records/:goal_id/new", GoalRecordLive.Index, :new
+      live "/reporting", GoalLive.Index, :index
+    end
+
+    get "/", PageController, :index
+
   end
 
   # Other scopes may use custom stacks.

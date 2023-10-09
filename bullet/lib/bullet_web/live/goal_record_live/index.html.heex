@@ -1,0 +1,52 @@
+<.header>
+  Past Records
+  <%!-- <:actions>
+  TODO
+    <.link patch={~p"/records/new"}>
+      <.button>New Record</.button>
+    </.link>
+  </:actions> --%>
+</.header>
+
+<.table id="records" rows={@streams.goal_records}>
+  <:col :let={{_id, goal_record}} label="Date">
+    <h3 class="text-sm text-gray-700">
+      <%= goal_record.record_date %>
+    </h3>
+  </:col>
+  <:col :let={{_id, goal_record}} label="Completed Score">
+    <h3 class="text-sm text-gray-700">
+      <%= goal_record.completed_score %>
+    </h3>
+  </:col>
+  <:col :let={{_id, goal_record}} label="Completed">
+    <h3 class="text-sm text-gray-700"></h3>
+  </:col>
+
+  <:action :let={{_id, goal_record}}>
+    <%!-- <div class="sr-only">
+    TODO
+      <.link navigate={~p"/records/#{goal}"}>Show</.link>
+    </div> --%>
+    <.link patch={~p"/records/#{goal_record}/new"}>Complete</.link>
+  </:action>
+  <%!-- <:action :let={{id, goal}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: goal.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action> --%>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="goal-record-modal" show on_cancel={JS.patch(~p"/records")}>
+  <.live_component
+    module={BulletWeb.GoalRecordLive.FormComponent}
+    id={@goal_record.id || :new}
+    title={@page_title}
+    action={@live_action}
+    goal={@goal_record}
+    patch={~p"/records"}
+  />
+</.modal>

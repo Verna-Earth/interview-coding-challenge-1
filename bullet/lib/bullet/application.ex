@@ -14,6 +14,8 @@ defmodule Bullet.Application do
       {Phoenix.PubSub, name: Bullet.PubSub},
       # Start Finch
       {Finch, name: Bullet.Finch},
+      # datastore
+      {CubDB, [data_dir: Bullet.Env.cubdb_data_dir(), name: Bullet.CubDB, auto_compact: true]},
       # Start the Endpoint (http/https)
       BulletWeb.Endpoint
       # Start a worker by calling: Bullet.Worker.start_link(arg)

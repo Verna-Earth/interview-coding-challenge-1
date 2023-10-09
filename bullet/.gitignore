@@ -35,3 +35,6 @@ bullet-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# CubDB data files
+/data/
+/data-test/
