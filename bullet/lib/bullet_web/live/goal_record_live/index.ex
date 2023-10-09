@@ -14,12 +14,6 @@ defmodule BulletWeb.GoalRecordLive.Index do
     {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp apply_action(socket, :edit, %{"id" => id}) do
-    socket
-    |> assign(:page_title, "Edit Goal Record")
-    |> assign(:goal_record, Journal.get_goal_record!(id))
-  end
-
   defp apply_action(socket, :today, %{"goal_id" => goal_id}) do
     socket
     |> assign(:page_title, "New Goal Record")
@@ -45,13 +39,5 @@ defmodule BulletWeb.GoalRecordLive.Index do
   @impl Phoenix.LiveView
   def handle_info({BulletWeb.GoalRecordLive.FormComponent, {:saved, goal_record}}, socket) do
     {:noreply, stream_insert(socket, :goal_records, goal_record)}
-  end
-
-  @impl Phoenix.LiveView
-  def handle_event("delete", %{"id" => id}, socket) do
-    goal_record = Journal.get_goal_record!(id)
-    {:ok, _} = Journal.delete_goal_record(goal_record)
-
-    {:noreply, stream_delete(socket, :goal_records, goal_record)}
   end
 end

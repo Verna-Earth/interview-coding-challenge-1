@@ -1,7 +1,10 @@
 ## TODO
 
-1. Show percentage completed for Today's Goals, and hide the corresponding "Complete Today" button if goal is 100% completed for today.
-2. On Past Records page, display the records in reversed chronological order 
-3. Calculate weekly average in Reporting
-4. Replace CubDB with Postgres for datastore 
-5. Add Pagination
+[x] ~~On Past Records page, display the records in reversed chronological order~~
+[ ] Show percentage completed for Today's Goals, and hide the corresponding "Record Today" button if goal is 100% completed for today.
+[ ] Merge two buttons "Record Today" and "Record Past" onto one single form
+[ ] Calculate weekly average in Reporting
+[ ] Replace CubDB with Postgres for datastore 
+[ ] Pagination
+[ ] Delete/Edit functions to Goal
+[ ] Delete/Edit funcitons for Goal Record 

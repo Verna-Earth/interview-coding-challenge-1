@@ -93,6 +93,7 @@ defmodule BulletWeb.GoalRecordLive.FormComponent do
   defp save_goal_record(socket, :edit, goal_record_params) do
     case Journal.update_goal_record(socket.assigns.goal_record, goal_record_params) do
       {:ok, goal_record} ->
+        IO.inspect("can update", label: "save_goal edit ok")
         notify_parent({:saved, goal_record})
 
         {:noreply,
@@ -101,6 +102,7 @@ defmodule BulletWeb.GoalRecordLive.FormComponent do
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        IO.inspect(changeset, label: "save_goal_record edit error")
         {:noreply, assign_form(socket, changeset)}
     end
   end
@@ -114,6 +116,7 @@ defmodule BulletWeb.GoalRecordLive.FormComponent do
   defp save_goal_record(socket, :new, goal_record_params) do
     case Journal.create_goal_record(goal_record_params) do
       {:ok, goal_record} ->
+        IO.inspect("can create", label: "save_goal_record new ok")
         notify_parent({:saved, goal_record})
 
         {:noreply,
@@ -122,11 +125,13 @@ defmodule BulletWeb.GoalRecordLive.FormComponent do
          |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
+        IO.inspect(changeset, label: "save_goal new error")
         {:noreply, assign_form(socket, changeset)}
     end
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
+    IO.inspect(changeset, label: "assign_form")
     assign(socket, :form, to_form(changeset))
   end
 

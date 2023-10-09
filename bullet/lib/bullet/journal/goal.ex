@@ -10,7 +10,7 @@ defmodule Bullet.Journal.Goal do
   @collection :goal
 
   embedded_schema do
-    field(:id, :integer)
+    field(:id, Ecto.UUID)
     field(:description, :string)
     field(:goal_type, Ecto.Enum, values: [:yesno_goal, :numeric_goal])
     field(:target_unit, :integer)
@@ -33,7 +33,7 @@ defmodule Bullet.Journal.Goal do
   end
 
   def get_all() do
-    CubDB.select(@db, min_key: {@collection, 0}, max_key: {@collection, nil})
+    CubDB.select(@db, min_key: {@collection, nil}, max_key: {@collection, "ffffffff"})
     |> Stream.map(fn {_key, value} -> struct(__MODULE__, value) end)
   end
 

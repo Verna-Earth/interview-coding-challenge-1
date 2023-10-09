@@ -31,9 +31,8 @@ defmodule Bullet.Journal do
       %Goal{}
 
   """
-  @spec get_goal!(String.t() | integer) :: Goal.t()
-  def get_goal!(id) when is_binary(id), do: get_goal!(String.to_integer(id))
-  def get_goal!(id) when is_integer(id), do: Goal.get!(id)
+  @spec get_goal!(String.t()) :: Goal.t()
+  def get_goal!(id) when is_binary(id), do: Goal.get!(id)
 
   @doc """
   Creates a goal.
@@ -51,7 +50,7 @@ defmodule Bullet.Journal do
   def create_goal(attrs \\ %{}) do
     attrs =
       attrs
-      |> Map.put(:id, System.unique_integer([:positive, :monotonic]))
+      |> Map.put(:id, Ecto.UUID.generate())
 
     %Goal{}
     |> Goal.changeset(attrs)
@@ -113,11 +112,16 @@ defmodule Bullet.Journal do
     GoalRecord.get_all()
   end
 
+  @spec list_todays_goal_records() :: [GoalRecord.t()]
+  def list_todays_goal_records do
+    GoalRecord.get_all_for_today()
+  end
+
   @spec create_goal_record(map()) :: {:ok, GoalRecord.t()} | {:error, Ecto.Changeset.t()}
   def create_goal_record(attrs \\ %{}) do
     attrs =
       attrs
-      |> Map.put(:id, System.unique_integer([:positive, :monotonic]))
+      |> Map.put(:id, Ecto.UUID.generate())
 
     %GoalRecord{}
     |> GoalRecord.changeset(attrs)

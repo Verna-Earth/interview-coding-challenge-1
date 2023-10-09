@@ -7,15 +7,17 @@ defmodule Bullet.Journal.GoalRecord do
   alias Bullet.Journal.Goal
 
   @primary_key false
+  @foreign_key_type Ecto.UUID
   @db Bullet.CubDB
   @collection :record
 
   embedded_schema do
-    field(:id, :integer)
+    field(:id, Ecto.UUID)
     field(:record_date, :date)
     field(:completed_score, :integer)
 
     belongs_to(:goal, Goal, foreign_key: :goal_id)
+    # belongs_to(:goal, Goal, foreign_key: :goal_id)
   end
 
   def changeset(%__MODULE__{} = goal, attrs) do
@@ -27,9 +29,25 @@ defmodule Bullet.Journal.GoalRecord do
   end
 
   def get_all() do
-    CubDB.select(@db, min_key: {@collection, 0}, max_key: {@collection, nil})
+    CubDB.select(@db,
+      min_key: {@collection, nil, nil},
+      max_key: {@collection, "", "ffffffff"},
+      reverse: true
+    )
     |> Stream.map(fn {_key, value} ->
-      value.goal_id
+      # value.goal_id
+      struct(__MODULE__, value)
+    end)
+  end
+
+  def get_all_for_today() do
+    CubDB.select(@db,
+      min_key: {@collection, Date.utc_today(), nil},
+      max_key: {@collection, Date.utc_today(), "ffffffff"},
+      reverse: true
+    )
+    |> Stream.map(fn {_key, value} ->
+      # value.goal_id
       struct(__MODULE__, value)
     end)
   end
@@ -46,10 +64,11 @@ defmodule Bullet.Journal.GoalRecord do
   def create(%{valid?: false} = changeset), do: {:error, changeset}
 
   def create(%{changes: changes, valid?: true}) do
+    IO.inspect(changes, label: "create goal record")
     # save to DB
-    CubDB.put(@db, {@collection, changes.id}, changes)
+    CubDB.put(@db, {@collection, changes.record_date, changes.goal_id}, changes)
     # read from DB and return it
-    goal = CubDB.get(@db, {@collection, changes.id})
+    goal = CubDB.get(@db, {@collection, changes.record_date, changes.goal_id})
     {:ok, struct(__MODULE__, goal)}
   end
 end
