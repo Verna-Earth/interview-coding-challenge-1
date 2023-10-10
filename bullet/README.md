@@ -1,7 +1,9 @@
 # Bullet
 
 ## Guide
-A simple webapp implementing a Bullet Journal
+A simple webapp implementing a Bullet Journal.
+
+Uses CubDB as the datastore.
 
 ## How to run
 To start your Phoenix server:
