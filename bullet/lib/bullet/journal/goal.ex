@@ -8,6 +8,7 @@ defmodule Bullet.Journal.Goal do
   @primary_key false
   @db Bullet.CubDB
   @collection :goal
+  @max_value_uuid "ffffffff-ffff-ffff-ffff-ffffffffffff"
 
   embedded_schema do
     field(:id, Ecto.UUID)
@@ -33,7 +34,7 @@ defmodule Bullet.Journal.Goal do
   end
 
   def get_all() do
-    CubDB.select(@db, min_key: {@collection, nil}, max_key: {@collection, "ffffffff"})
+    CubDB.select(@db, min_key: {@collection, nil}, max_key: {@collection, @max_value_uuid})
     |> Stream.map(fn {_key, value} -> struct(__MODULE__, value) end)
   end
 

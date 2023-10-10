@@ -8,4 +8,15 @@ defmodule Bullet.Utils do
       {key, value}, acc when is_binary(key) -> Map.put(acc, String.to_existing_atom(key), value)
     end)
   end
+
+  @doc """
+  Returns the percentage in string, eg 5%, 10%, 100%
+  We will only return 100% as the max, even when value is larger than base 
+  """
+  def get_percentage_string(value, base) when is_integer(base) and is_integer(value) do
+    cond do
+      value >= base -> "100%"
+      true -> Number.Percentage.number_to_percentage(value / base * 100, precision: 0)
+    end
+  end
 end

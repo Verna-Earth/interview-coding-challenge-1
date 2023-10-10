@@ -52,6 +52,7 @@ defmodule Bullet.MixProject do
 
       # misc / utils
       {:swoosh, "~> 1.3"},
+      {:number, "~> 1.0"},
       {:floki, ">= 0.30.0", only: :test},
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 0.6"},

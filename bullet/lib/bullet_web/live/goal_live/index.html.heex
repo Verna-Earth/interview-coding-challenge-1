@@ -19,11 +19,13 @@
     </h3>
   </:col>
   <:col :let={{_id, goal}} label="Completed">
-    <h3 class="text-sm text-gray-700"></h3>
+    <h3 class="text-sm text-gray-700">
+      <%= get_goal_complete(goal, @today_goal_records) %>
+    </h3>
   </:col>
 
   <:action :let={{_id, goal}}>
-    <.button>
+    <.button :if={!goal_complete?(goal, @today_goal_records)}>
       <.link patch={~p"/records/#{goal}/today"}>Record Today</.link>
     </.button>
     <.button>

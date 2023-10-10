@@ -3,6 +3,7 @@ defmodule BulletWeb.GoalRecordLive.Index do
 
   alias Bullet.Journal
   alias Bullet.Journal.GoalRecord
+  alias Bullet.Utils
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
@@ -38,6 +39,6 @@ defmodule BulletWeb.GoalRecordLive.Index do
 
   @impl Phoenix.LiveView
   def handle_info({BulletWeb.GoalRecordLive.FormComponent, {:saved, goal_record}}, socket) do
-    {:noreply, stream_insert(socket, :goal_records, goal_record)}
+    {:noreply, stream_insert(socket, :goal_records, goal_record, at: 0)}
   end
 end

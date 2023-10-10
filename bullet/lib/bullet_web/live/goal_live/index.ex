@@ -3,10 +3,16 @@ defmodule BulletWeb.GoalLive.Index do
 
   alias Bullet.Journal
   alias Bullet.Journal.Goal
+  alias Bullet.Utils
 
   @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
-    {:ok, stream(socket, :goals, Journal.list_goals())}
+    socket =
+      socket
+      |> stream(:goals, Journal.list_goals())
+      |> assign(:today_goal_records, Journal.list_todays_goal_records() |> Enum.to_list())
+
+    {:ok, socket}
   end
 
   @impl Phoenix.LiveView
@@ -34,7 +40,7 @@ defmodule BulletWeb.GoalLive.Index do
 
   @impl Phoenix.LiveView
   def handle_info({BulletWeb.GoalLive.FormComponent, {:saved, goal}}, socket) do
-    {:noreply, stream_insert(socket, :goals, goal)}
+    {:noreply, stream_insert(socket, :goals, goal, at: 0)}
   end
 
   @impl Phoenix.LiveView
@@ -43,5 +49,19 @@ defmodule BulletWeb.GoalLive.Index do
     {:ok, _} = Journal.delete_goal(goal)
 
     {:noreply, stream_delete(socket, :goals, goal)}
+  end
+
+  defp goal_complete?(goal, goal_records) do
+    goal_records
+    |> Enum.any?(fn gr ->
+      gr.goal_id == goal.id and gr.completed_score >= goal.target_unit
+    end)
+  end
+
+  defp get_goal_complete(goal, goal_records) do
+    case Enum.find(goal_records, fn gr -> gr.goal_id == goal.id end) do
+      nil -> ""
+      goal_record -> Utils.get_percentage_string(goal_record.completed_score, goal.target_unit)
+    end
   end
 end
