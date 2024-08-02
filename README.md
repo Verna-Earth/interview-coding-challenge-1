@@ -24,15 +24,16 @@ If you're not a GitHub user, or your GH account is private:
 
 ## The brief
 
-Our new product idea is a variant of a daily
-[bullet journal](https://en.wikipedia.org/wiki/Bullet_journal).
-We want to create a simple prototype for user testing.
+Our new product idea is a variant of a daily recurring-goals tracker. This is distinct from a
+standard todo-list, of which there are many, by allowing the user to set up a list of goals they
+expect to repeat every day. For example "take meds", "practice a language", "do rehab exercises",
+etc. We want to create a simple prototype for user testing.
 
-The bullet journal app will be a web application in which users can:
+The daily-goals journal app will be a web application in which users can:
 
-- set daily goals
-- a goal can be either a yes/no option (e.g. "Go for a walk every day") or a numerical option (e.g. "practice speaking French for at least 10 mins every day")
-- each day, enter how well they have done against the goal
+- set daily goals, which can be either a yes/no option (e.g. "Go for a walk every day") or
+  a numerical option (e.g. "practice speaking French for at least 10 mins every day")
+- each day, enter how well they have done that day against the goal
 - at any time, see some simple reports of progress against goals.
 
 ### User stories
@@ -40,15 +41,23 @@ The bullet journal app will be a web application in which users can:
 Here are some initial user stories, with
 [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) priorities:
 
-**M** When I am using the app<br />
+**M** When I am recording my progress for today<br />
 I want to quickly record when I have met a current yes/no goal<br />
 So that it's easy for me to check off my daily todo items.
 
-**M** When I am using the app<br />
+**M** When I am recording my progress for today<br />
 I want to quickly record the amount I have completed for a numerical goal<br />
 So that it's easy for me to accumulate my progress each day.
 
-**C** When I am reflecting on my progress<br />
+**S** When I am recording my progress for today<br />
+I want to quickly amend the amount I have completed for a numerical goal<br />
+So that it's easy for me to incrementally track my progress.
+
+**C** When I am recording my progress for today<br />
+I want to set an amount that exceeds my target for the day<br />
+So that I can tell if I need to increase my goal.
+
+**C** When I am reflecting on previous days<br />
 I want to amend a previous day's daily goal results<br />
 So that I can keep my progress accurate even if I forgot at the time.
 
