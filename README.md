@@ -1,6 +1,6 @@
 # Verna interview coding exercise
 
-This repo is the basis for one of the coding exercises for applicants to engineering job vacancies at [Verna](https://verna.earth). This exercise emphasises front-end web application coding.
+This repo is the basis for one of the coding exercises for applicants to engineering job vacancies at [Verna]. This exercise emphasises front-end web application coding.
 
 The goal of this exercise is to give us an idea of your coding style, and something to discuss during the technical interview. We'd hope for this exercise to take something in the region of three or four hours. We won't be checking, but please - don't spend your entire weekend on this challenge. It's not necessary to meet the goals of the interview process, and, frankly, you've got much more interesting things to do in your free time! It's fine to submit an incomplete solution with notes on what you would do with more time.
 
@@ -24,22 +24,17 @@ If you're not a GitHub user, or your GH account is private:
 
 ## The brief
 
-Our new product idea is a variant of a daily recurring-goals tracker. This is distinct from a
-standard todo-list, of which there are many, by allowing the user to set up a list of goals they
-expect to repeat every day. For example "take meds", "practice a language", "do rehab exercises",
-etc. We want to create a simple prototype for user testing.
+Our new product idea is a variant of a daily recurring-goals tracker. This is distinct from a standard todo-list, of which there are many, by allowing the user to set up a list of goals they expect to repeat every day. For example "take meds", "practice a language", "do rehab exercises", etc. We want to create a simple prototype for user testing.
 
 The daily-goals journal app will be a web application in which users can:
 
-- set daily goals, which can be either a yes/no option (e.g. "Go for a walk every day") or
-  a numerical option (e.g. "practice speaking French for at least 10 mins every day")
+- set daily goals, which can be either a yes/no option (e.g. "Go for a walk every day") or  a numerical option (e.g. "practice speaking French for at least 10 mins every day")
 - each day, enter how well they have done that day against the goal
 - at any time, see some simple reports of progress against goals.
 
 ### User stories
 
-Here are some initial user stories, with
-[MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) priorities:
+Here are some initial user stories, with [MoSCoW] priorities:
 
 **M** When I am recording my progress for today<br />
 I want to quickly record when I have met a current yes/no goal<br />
@@ -91,6 +86,12 @@ Your solution should include instructions on how to build, launch and test your 
 
 We haven't given you any wireframes. Feel free to be as creative as you like, but primarily this is a coding challenge not a design challenge.
 
+## How we'll evaluate your solution
+
+The key goal for this exercise is for you to show us how you think about, design, write and test code. There's a lot of moving pieces to this challenge. It's OK to do less of it in the time available, and focus on showing your best work. In fact, we'd prefer that you do some of it really well, than complete all of it but in rush and by cutting corners. Think about what skills you want to be able to demonstrate. As to what to leave out and what to include, that's up to you.
+
+In terms of evaluation, we want you to show how you can create clean, clear implementations that would allow you and your colleagues to develop, ship and maintain effective, usable features over the long term.
+
 ## And lastly...
 
 We can't check if you use AI tools like Copilot or GPT to complete this challenge, but please don't. That's not the way that we work at Verna, and we will want to discuss your design choices with you!
@@ -98,3 +99,6 @@ We can't check if you use AI tools like Copilot or GPT to complete this challeng
 Once you have completed the exercise, please either create a PR against the repo, or send your hiring manager a `zip` or `tar` archive of your project.
 
 Good luck!
+
+[MoSCoW]: https://en.wikipedia.org/wiki/MoSCoW_method
+[Verna]: https://verna.earth
