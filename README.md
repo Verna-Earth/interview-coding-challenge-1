@@ -34,37 +34,37 @@ The daily-goals journal app will be a web application in which users can:
 
 ### User stories
 
-Here are some initial user stories, with [MoSCoW] priorities:
+Here are some initial user stories, roughly in priority order:
 
-**M** When I am recording my progress for today<br />
+When I am recording my progress for today<br />
 I want to quickly record when I have met a current yes/no goal<br />
 So that it's easy for me to check off my daily todo items.
 
-**M** When I am recording my progress for today<br />
+When I am recording my progress for today<br />
 I want to quickly record the amount I have completed for a numerical goal<br />
 So that it's easy for me to accumulate my progress each day.
 
-**S** When I am recording my progress for today<br />
-I want to quickly amend the amount I have completed for a numerical goal<br />
-So that it's easy for me to incrementally track my progress.
-
-**C** When I am recording my progress for today<br />
-I want to set an amount that exceeds my target for the day<br />
-So that I can tell if I need to increase my goal.
-
-**C** When I am reflecting on previous days<br />
-I want to amend a previous day's daily goal results<br />
-So that I can keep my progress accurate even if I forgot at the time.
-
-**M** When I have a new goal that I want to set myself<br />
+When I have a new goal that I want to set myself<br />
 I can create a new daily target in the app<br />
 So that it's easy for me to set new objectives for myself.
 
-**S** When I am looking at reports from the app<br />
+When I am recording my progress for today<br />
+I want to quickly amend the amount I have completed for a numerical goal<br />
+So that it's easy for me to incrementally track my progress.
+
+When I am looking at reports from the app<br />
 I can see my progress against recent daily goals<br />
 So that I can tell if I'm succeeding at meeting my goals.
 
-**C** When I am looking at reports from the app<br />
+When I am recording my progress for today<br />
+I want to set an amount that exceeds my target for the day<br />
+So that I can tell if I need to increase my goal.
+
+When I am reflecting on previous days<br />
+I want to amend a previous day's daily goal results<br />
+So that I can keep my progress accurate even if I forgot at the time.
+
+When I am looking at reports from the app<br />
 I can see my progress aggregated as weekly averages<br />
 So that I can tell if I'm succeeding at meeting my goals.
 
@@ -92,7 +92,7 @@ The key goal for this exercise is for you to show us how you think about, design
 
 In terms of evaluation, we want you to show how you can create clean, clear implementations that would allow you and your colleagues to develop, ship and maintain effective, usable features over the long term.
 
-## And lastly...
+## And lastly ...
 
 We can't check if you use AI tools like Copilot or GPT to complete this challenge, but please don't. That's not the way that we work at Verna, and we will want to discuss your design choices with you!
 
@@ -100,5 +100,4 @@ Once you have completed the exercise, please either create a PR against the repo
 
 Good luck!
 
-[MoSCoW]: https://en.wikipedia.org/wiki/MoSCoW_method
 [Verna]: https://verna.earth
