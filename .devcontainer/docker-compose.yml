@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - vscode-extension:/vscode/.vscode-server-insiders
+      # Docker
+      - ~/.docker:/home/vscode/.docker
+      # Docker socket to access Docker server
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Git config
+      - ~/.gitconfig:/home/vscode/.gitconfig
+    command: sleep infinity
+    network_mode: service:db
+
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    env_file: ../.env
+
+volumes:
+  postgres-data:
+  vscode-extension:

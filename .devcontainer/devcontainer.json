@@ -1,0 +1,32 @@
+{
+ "name": "Phoenix Practice",
+ "dockerComposeFile": "docker-compose.yml",
+ "service": "app",
+ "workspaceFolder": "/workspace",
+
+ "customizations": {
+  "vscode": {
+   "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "emmet.includeLanguages": {
+        "phoenix-heex": "html"
+    },
+    "tailwindCSS.includeLanguages": {
+        "elixir": "html",
+        "phoenix-heex": "html"
+    }
+   },
+   "extensions": [
+    "ms-azuretools.vscode-docker",
+    "dbaeumer.vscode-eslint",
+    "jakebecker.elixir-ls",
+    "phoenixframework.phoenix",
+    "samuel-pordeus.elixir-test",
+    "bradlc.vscode-tailwindcss"
+   ]
+  }
+ },
+ "mounts": [
+    "type=bind,source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/<remoteusername>/.ssh,readonly"
+    ]
+}
