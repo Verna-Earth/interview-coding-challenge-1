@@ -10,30 +10,35 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-ToDo.Repo.insert!(%ToDo.User{name: "Judith", email: "lacks_imagination@hotmail.com"})
+ToDo.Repo.insert!(%ToDo.Accounts.User{name: "Judith", email: "lacks_imagination@hotmail.com"})
 
-ToDo.Repo.insert!(%ToDo.Task{
+ToDo.Repo.insert!(%ToDo.Tasks.Task{
   name: "Language lessons",
   task_type: :bool,
   frequency: 1,
   user_id: 1
 })
 
-ToDo.Repo.insert!(%ToDo.Task{name: "Stretches", task_type: :times, frequency: 3, user_id: 1})
+ToDo.Repo.insert!(%ToDo.Tasks.Task{
+  name: "Stretches",
+  task_type: :times,
+  frequency: 3,
+  user_id: 1
+})
 
-ToDo.Repo.insert!(%ToDo.Task.Record{
+ToDo.Repo.insert!(%ToDo.Tasks.Record{
   task_id: 1,
   completed: Date.utc_today() |> Date.add(-1),
   times: 1
 })
 
-ToDo.Repo.insert!(%ToDo.Task.Record{
+ToDo.Repo.insert!(%ToDo.Tasks.Record{
   task_id: 2,
   completed: Date.utc_today() |> Date.add(-1),
   times: 2
 })
 
-ToDo.Repo.insert!(%ToDo.Task.Record{
+ToDo.Repo.insert!(%ToDo.Tasks.Record{
   task_id: 2,
   completed: Date.utc_today() |> Date.add(-2),
   times: 4

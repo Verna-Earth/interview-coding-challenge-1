@@ -18,7 +18,7 @@ defmodule ToDoWeb.Router do
     pipe_through :browser
 
     get "/", LandingController, :home
-    get "/login", LandingController, :login
+    post "/login", LandingController, :login
   end
 
   # Other scopes may use custom stacks.

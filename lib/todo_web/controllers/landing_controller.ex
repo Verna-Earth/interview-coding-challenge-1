@@ -1,8 +1,6 @@
 defmodule ToDoWeb.LandingController do
-  alias ToDo.User
-  alias ToDo.Repo
+  alias ToDo.Accounts
   use ToDoWeb, :controller
-  import Ecto.Query, only: [from: 2]
 
   @doc """
   Renders the landing page.
@@ -12,16 +10,16 @@ defmodule ToDoWeb.LandingController do
   end
 
   def login(conn, %{"user" => %{"email" => email}}) do
-    user = ToDo.User.exists?(email)
+    user = Accounts.user_exists?(email) |> IO.inspect()
 
     if user do
       conn
-      |> Controller.put_flash(:info, "That works!")
-      |> Controller.redirect(to: ~p"/")
+      |> put_flash(:info, "That works!")
+      |> redirect(to: ~p"/")
     else
       conn
-      |> Controller.put_flash(:error, "Sorry, the only user is lacks_imagination@hotmail.com")
-      |> Controller.redirect(to: ~p"/")
+      |> put_flash(:error, "Sorry, the only user is lacks_imagination@hotmail.com")
+      |> redirect(to: ~p"/")
       |> halt()
     end
   end
