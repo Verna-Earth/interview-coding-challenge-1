@@ -37,9 +37,9 @@ defmodule ToDo.Accounts do
   """
   def get_user!(id), do: Repo.get!(User, id)
 
-  def user_exists?(email) do
+  def get_user_by_email!(email) do
     query = from(u in User, where: u.email == ^email)
-    Repo.exists?(query)
+    Repo.one!(query)
   end
 
   @doc """

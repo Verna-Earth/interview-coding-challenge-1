@@ -1,5 +1,5 @@
 {
- "name": "Phoenix Practice",
+ "name": "Interview Coding Challenge - Frontend",
  "dockerComposeFile": "docker-compose.yml",
  "service": "app",
  "workspaceFolder": "/workspace",

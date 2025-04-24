@@ -17,8 +17,8 @@ defmodule ToDo.Tasks do
       [%Task{}, ...]
 
   """
-  def list_tasks do
-    Repo.all(Task)
+  def list_tasks(user_id) do
+    Repo.all(from(t in Task, where: t.user_id == ^user_id))
   end
 
   @doc """

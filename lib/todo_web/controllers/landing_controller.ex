@@ -9,13 +9,18 @@ defmodule ToDoWeb.LandingController do
     render(conn, :home, layout: false, changeset: %{})
   end
 
+  @doc """
+  Very quick and dirty login function - in a real app this would be handled through Session properly.
+  """
   def login(conn, %{"user" => %{"email" => email}}) do
-    user = Accounts.user_exists?(email) |> IO.inspect()
+    user = Accounts.get_user_by_email!(email)
 
     if user do
       conn
-      |> put_flash(:info, "That works!")
-      |> redirect(to: ~p"/")
+      |> put_flash(:info, "Signed in!")
+      |> put_session(:user_id, user.id)
+      |> put_session(:user_name, user.name)
+      |> redirect(to: ~p"/tasks")
     else
       conn
       |> put_flash(:error, "Sorry, the only user is lacks_imagination@hotmail.com")
