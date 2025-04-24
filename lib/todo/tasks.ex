@@ -4,6 +4,7 @@ defmodule ToDo.Tasks do
   """
 
   import Ecto.Query, warn: false
+  alias ToDo.Tasks.Record
   alias ToDo.Repo
 
   alias ToDo.Tasks.Task
@@ -18,7 +19,7 @@ defmodule ToDo.Tasks do
 
   """
   def list_tasks(user_id) do
-    Repo.all(from(t in Task, where: t.user_id == ^user_id))
+    Repo.all(from(t in Task, where: t.user_id == ^user_id)) |> Repo.preload(:task_records)
   end
 
   @doc """
@@ -35,7 +36,7 @@ defmodule ToDo.Tasks do
       ** (Ecto.NoResultsError)
 
   """
-  def get_task!(id), do: Repo.get!(Task, id)
+  def get_task!(id), do: Repo.get!(Task, id) |> Repo.preload(:task_records)
 
   @doc """
   Creates a task.
@@ -113,8 +114,8 @@ defmodule ToDo.Tasks do
       [%Record{}, ...]
 
   """
-  def list_records do
-    Repo.all(Record)
+  def list_records(task_id) do
+    Repo.all(from(r in Record, where: r.task_id == ^task_id))
   end
 
   @doc """

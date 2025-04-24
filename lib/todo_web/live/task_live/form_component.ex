@@ -1,0 +1,121 @@
+defmodule ToDoWeb.TaskLive.FormComponent do
+  use ToDoWeb, :live_component
+
+  alias ToDo.Tasks
+
+  @impl true
+  def render(assigns) do
+    ~H"""
+    <div>
+      <.header>
+        {@title}
+      </.header>
+
+      <.simple_form
+        for={@form}
+        id="task-form"
+        phx-target={@myself}
+        phx-change="validate"
+        phx-submit="save"
+      >
+        <.input
+          id="task-name"
+          label="Task name"
+          type="text"
+          value={@form[:name].value}
+          field={@form[:name]}
+        />
+        <.input
+          id="task-type"
+          label="Select list"
+          name="task_type"
+          type="select"
+          phx-change="type_changed"
+          value={@form[:task_type].value}
+          field={@form[:task_type]}
+          options={["Yes/No": :bool, "X times daily": :times]}
+        />
+        <.input
+          id="task-frequency"
+          label="Times per day"
+          name="frequency"
+          type="number"
+          value={@form[:frequency].value}
+          field={@form[:frequency]}
+        />
+        <input name={@form[:user_id].name} value={@form[:user_id].value} type="hidden" />
+        <:actions>
+          <.button phx-disable-with="Saving...">Save Task</.button>
+        </:actions>
+      </.simple_form>
+    </div>
+    """
+  end
+
+  @impl true
+  def update(%{task: task} = assigns, socket) do
+    {:ok,
+     socket
+     |> assign(assigns)
+     |> assign_new(:form, fn ->
+       to_form(Tasks.change_task(task))
+     end)}
+  end
+
+  @impl true
+  def handle_event("validate", %{"task" => task_params}, socket) do
+    changeset = Tasks.change_task(socket.assigns.task, task_params)
+    {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
+  end
+
+  def handle_event("save", %{"task" => task_params}, socket) do
+    save_task(socket, socket.assigns.action, task_params)
+  end
+
+  def handle_event("type_changed", %{"task" => task_params}, socket) do
+    %{"task_type" => type} = task_params
+
+    case type do
+      "bool" ->
+        changeset = Tasks.change_task(socket.assigns.task, %{frequency: 1})
+        {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
+
+      _ ->
+        {:noreply, socket}
+    end
+  end
+
+  defp save_task(socket, :edit, task_params) do
+    case Tasks.update_task(socket.assigns.task, task_params) do
+      {:ok, task} ->
+        notify_parent({:saved, task})
+
+        {:noreply,
+         socket
+         |> put_flash(:info, "Task updated successfully")
+         |> push_patch(to: socket.assigns.patch)}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, form: to_form(changeset))}
+    end
+  end
+
+  defp save_task(socket, :new, task_params) do
+    IO.inspect(task_params)
+
+    case Tasks.create_task(task_params) do
+      {:ok, task} ->
+        notify_parent({:saved, task})
+
+        {:noreply,
+         socket
+         |> put_flash(:info, "Task created successfully")
+         |> push_patch(to: socket.assigns.patch)}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, form: to_form(changeset))}
+    end
+  end
+
+  defp notify_parent(msg), do: send(self(), {__MODULE__, msg})
+end

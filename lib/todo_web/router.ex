@@ -19,6 +19,15 @@ defmodule ToDoWeb.Router do
 
     get "/", LandingController, :home
     post "/login", LandingController, :login
+
+    live_session :tasks do
+      live "/tasks", TaskLive.Index, :index
+      live "/tasks/new", TaskLive.Index, :new
+      live "/tasks/:id/edit", TaskLive.Index, :edit
+
+      live "/tasks/:id", TaskLive.Show, :show
+      live "/tasks/:id/show/edit", TaskLive.Show, :edit
+    end
   end
 
   # Other scopes may use custom stacks.

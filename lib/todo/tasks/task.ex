@@ -16,8 +16,9 @@ defmodule ToDo.Tasks.Task do
   @doc false
   def changeset(task, attrs) do
     task
-    |> cast(attrs, [:name, :task_type, :frequency])
-    |> validate_required([:name, :task_type, :frequency])
+    |> cast(attrs, [:name, :task_type, :frequency, :user_id])
+    |> validate_required([:name, :task_type, :frequency, :user_id])
+    |> assoc_constraint(:user)
     |> validate_length(:name, min: 1)
     |> validate_length(:name, max: 100)
     |> validate_number(:frequency, greater_than: 0)

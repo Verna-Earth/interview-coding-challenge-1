@@ -1,5 +1,6 @@
 # ToDos
 
+* Hide fequency input on tasks if Yes/no selected
 * Validate task record dates so there's only one record per day
 * Rewrite seeds.exs to be idempotent
 * Rename everything (possibly restart from scratch) so not stuck with ToDo naming scheme.

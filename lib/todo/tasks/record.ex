@@ -14,8 +14,9 @@ defmodule ToDo.Tasks.Record do
   @doc false
   def changeset(record, attrs) do
     record
-    |> cast(attrs, [:completed, :times])
-    |> validate_required([:completed, :times])
+    |> cast(attrs, [:completed, :times, :task_id])
+    |> validate_required([:completed, :times, :task_id])
+    |> assoc_constraint(:task)
     |> validate_number(:times, greater_than: 0)
     |> validate_not_in_future(:completed)
   end
