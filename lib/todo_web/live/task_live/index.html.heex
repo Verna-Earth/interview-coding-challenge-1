@@ -40,7 +40,7 @@
   <.live_component
     module={ToDoWeb.TaskLive.FormComponent}
     id={@task.id || :new}
-    title={@page_title}
+    page_title={@page_title}
     action={@live_action}
     task={@task}
     patch={~p"/tasks"}

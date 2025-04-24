@@ -19,7 +19,7 @@ defmodule ToDo.Tasks do
 
   """
   def list_tasks(user_id) do
-    Repo.all(from(t in Task, where: t.user_id == ^user_id)) |> Repo.preload(:task_records)
+    Repo.all(from(t in Task, where: t.user_id == ^user_id))
   end
 
   @doc """

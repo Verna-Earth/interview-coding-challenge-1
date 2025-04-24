@@ -27,6 +27,8 @@ defmodule ToDoWeb.Router do
 
       live "/tasks/:id", TaskLive.Show, :show
       live "/tasks/:id/show/edit", TaskLive.Show, :edit
+      live "/tasks/:id/records/new", TaskLive.Show, :record_new
+      live "/tasks/:id/records/:record_id/edit", TaskLive.Show, :record_edit
     end
   end
 

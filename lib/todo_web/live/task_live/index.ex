@@ -28,7 +28,7 @@ defmodule ToDoWeb.TaskLive.Index do
   defp apply_action(socket, :new, _params) do
     socket
     |> assign(:page_title, "New Task")
-    |> assign(:task, %Task{user_id: socket.assigns.user_id, task_type: "bool", frequency: 1})
+    |> assign(:task, %Task{user_id: socket.assigns.user_id, task_type: :bool, frequency: 1})
   end
 
   defp apply_action(socket, :index, _params) do

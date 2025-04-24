@@ -4,19 +4,37 @@ defmodule ToDoWeb.TaskLive.Show do
   alias ToDo.Tasks
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, socket}
+  def mount(%{"id" => id}, _session, socket) do
+    {:ok, socket |> assign(:task, Tasks.get_task!(id))}
   end
 
   @impl true
-  def handle_params(%{"id" => id}, _, socket) do
-    {:noreply,
-     socket
-     |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:task, Tasks.get_task!(id))
-     |> assign(:records, Tasks.list_records(id))}
+  def handle_params(params, _url, socket) do
+    {:noreply, apply_action(socket, socket.assigns.live_action, params)}
   end
 
-  defp page_title(:show), do: "Show Task"
-  defp page_title(:edit), do: "Edit Task"
+  defp apply_action(socket, :edit, _params) do
+    socket
+    |> assign(:page_title, "Edit Task")
+    |> assign(:record, nil)
+  end
+
+  defp apply_action(socket, :show, %{"id" => id}) do
+    socket
+    |> assign(:page_title, "Show Task")
+    |> assign(:task, Tasks.get_task!(id))
+    |> assign(:record, nil)
+  end
+
+  defp apply_action(socket, :record_new, %{"id" => id}) do
+    socket
+    |> assign(:page_title, "Add Record")
+    |> assign(:record, %Tasks.Record{task_id: id})
+  end
+
+  defp apply_action(socket, :record_edit, %{"record_id" => id}) do
+    socket
+    |> assign(:page_title, "Edit Record")
+    |> assign(:record, Tasks.get_record!(id))
+  end
 end

@@ -23,11 +23,10 @@ defmodule ToDo.Tasks.Record do
 
   defp validate_not_in_future(changeset, field) do
     validate_change(changeset, field, fn field, value ->
-      if value > Date.utc_today() do
-        changeset
-        |> add_error(field, "cannot be in the future.")
+      if Date.after?(value, Date.utc_today()) do
+        [{field, "cannot be in the future."}]
       else
-        changeset
+        []
       end
     end)
   end

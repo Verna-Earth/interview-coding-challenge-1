@@ -8,7 +8,7 @@ defmodule ToDoWeb.TaskLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        {@title}
+        {@page_title}
       </.header>
 
       <.simple_form
@@ -27,22 +27,23 @@ defmodule ToDoWeb.TaskLive.FormComponent do
         />
         <.input
           id="task-type"
-          label="Select list"
-          name="task_type"
+          label="Task type"
           type="select"
-          phx-change="type_changed"
           value={@form[:task_type].value}
           field={@form[:task_type]}
           options={["Yes/No": :bool, "X times daily": :times]}
         />
-        <.input
-          id="task-frequency"
-          label="Times per day"
-          name="frequency"
-          type="number"
-          value={@form[:frequency].value}
-          field={@form[:frequency]}
-        />
+        <%= if @form[:task_type].value == :bool || @form[:task_type].value == "bool" do %>
+          <input type="hidden" name={@form[:frequency].name} value={1} />
+        <% else %>
+          <.input
+            id="task-frequency"
+            label="Times per day"
+            type="number"
+            value={@form[:frequency].value}
+            field={@form[:frequency]}
+          />
+        <% end %>
         <input name={@form[:user_id].name} value={@form[:user_id].value} type="hidden" />
         <:actions>
           <.button phx-disable-with="Saving...">Save Task</.button>
@@ -72,19 +73,6 @@ defmodule ToDoWeb.TaskLive.FormComponent do
     save_task(socket, socket.assigns.action, task_params)
   end
 
-  def handle_event("type_changed", %{"task" => task_params}, socket) do
-    %{"task_type" => type} = task_params
-
-    case type do
-      "bool" ->
-        changeset = Tasks.change_task(socket.assigns.task, %{frequency: 1})
-        {:noreply, assign(socket, form: to_form(changeset, action: :validate))}
-
-      _ ->
-        {:noreply, socket}
-    end
-  end
-
   defp save_task(socket, :edit, task_params) do
     case Tasks.update_task(socket.assigns.task, task_params) do
       {:ok, task} ->
@@ -101,8 +89,6 @@ defmodule ToDoWeb.TaskLive.FormComponent do
   end
 
   defp save_task(socket, :new, task_params) do
-    IO.inspect(task_params)
-
     case Tasks.create_task(task_params) do
       {:ok, task} ->
         notify_parent({:saved, task})
