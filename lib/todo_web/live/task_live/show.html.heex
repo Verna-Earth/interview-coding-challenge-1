@@ -17,7 +17,7 @@
 <.live_component
   module={ToDoWeb.RecordLive.TableComponent}
   id={"records-#{@task.id}"}
-  records={@task.task_records}
+  records={@task.task_records |> Enum.sort_by(& &1.completed, {:desc, Date})}
   task={@task}
   record={@record}
   patch={~p"/tasks/#{@task}"}

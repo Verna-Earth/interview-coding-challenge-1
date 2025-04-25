@@ -18,9 +18,6 @@ defmodule ToDoWeb.RecordLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
-        <.error :if={@form.action}>
-          Failed to save the record. Please address the errors below.
-        </.error>
         <.input
           id="record-completed"
           label="Date completed"
