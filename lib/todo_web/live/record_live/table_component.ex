@@ -8,14 +8,14 @@ defmodule ToDoWeb.RecordLive.TableComponent do
   def render(assigns) do
     ~H"""
     <div>
-      <.header>
+      <.subheader class="text-base">
         How it's going
         <:actions>
           <.link patch={~p"/tasks/#{@task.id}/records/new"}>
             <.button>New record</.button>
           </.link>
         </:actions>
-      </.header>
+      </.subheader>
       <.table id="records" rows={@records}>
         <:col :let={record} label="Date">{record.completed}</:col>
         <:col :let={record} label="Result?">

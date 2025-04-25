@@ -19,6 +19,7 @@ defmodule ToDo.Tasks.Record do
     |> assoc_constraint(:task)
     |> validate_number(:times, greater_than: 0)
     |> validate_not_in_future(:completed)
+    |> unique_constraint([:task_id, :completed])
   end
 
   defp validate_not_in_future(changeset, field) do

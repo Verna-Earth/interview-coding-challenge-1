@@ -11,5 +11,6 @@ defmodule ToDo.Repo.Migrations.CreateRecords do
     end
 
     create index(:records, [:task_id])
+    create unique_index(:records, [:task_id, :completed])
   end
 end

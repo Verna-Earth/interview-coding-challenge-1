@@ -13,7 +13,7 @@ defmodule ToDo.TasksFixtures do
       |> Enum.into(%{
         frequency: 42,
         name: "some name",
-        task_type: "some task_type"
+        task_type: :times
       })
       |> ToDo.Tasks.create_task()
 

@@ -11,7 +11,7 @@ defmodule ToDo.AccountsFixtures do
     {:ok, user} =
       attrs
       |> Enum.into(%{
-        email: "some email",
+        email: "some@email.com",
         name: "some name"
       })
       |> ToDo.Accounts.create_user()

@@ -18,6 +18,9 @@ defmodule ToDoWeb.RecordLive.FormComponent do
         phx-change="validate"
         phx-submit="save"
       >
+        <.error :if={@form.action}>
+          Failed to save the record. Please address the errors below.
+        </.error>
         <.input
           id="record-completed"
           label="Date completed"
@@ -52,6 +55,13 @@ defmodule ToDoWeb.RecordLive.FormComponent do
         <:actions>
           <.button phx-disable-with="Saving...">Save Record</.button>
         </:actions>
+        <%= for field <- ~w[task_id]a, error <- @form[field].errors do %>
+          <.error>
+            {field |> Atom.to_string() |> String.replace("_", " ") |> String.capitalize()} {translate_error(
+              error
+            )}
+          </.error>
+        <% end %>
       </.simple_form>
     </div>
     """
