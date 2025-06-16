@@ -1,4 +1,4 @@
-# Verna interview coding exercise
+# Verna front-end coding challenge
 
 This repo is the basis for one of the coding exercises for applicants to engineering job vacancies at [Verna]. This exercise emphasises front-end web application coding.
 
@@ -6,25 +6,25 @@ The goal of this exercise is to give us an idea of your coding style, and someth
 
 ## Instructions
 
+First agree a submission deadline with your hiring manager. This is intended to allow you time to fit in working on the challenge around your current work and home responsibilities.
+
 If you are a GitHub user:
 
 1. `git clone` this repo.
 2. Write a small but functionally-complete app that meets the brief, below. Make as many commits as you normally would do.
 3. Include a document to explain how the reviewer can run your app.
-4. Create a pull-request to merge your solution back to `main`.
+4. Create a pull-request to merge your solution back to `main`. Or, alternatively, send a link to the GitHub repo containing your solution.
 
-If you're not a GitHub user, or your GH account is private:
+If you're not a GitHub user, or your GitHub account is private:
 
-1. Your hiring manager will send you a `.zip` or `.tar` file containing
-   this exercise.
-2. Write a small but functionally-complete app that meets the brief, below.
-   Make as many commits as you normally would do.
+1. Your hiring manager will send you a `.zip` or `.tar` file containing   this exercise.
+2. Write a small but functionally-complete app that meets the brief, below. Make as many commits as you normally would do.
 3. Include a document to explain how the reviewer can run your app.
 4. Zip or tar your solution, and email it to your hiring manager.
 
 ## The brief
 
-Our new product idea is a variant of a daily recurring-goals tracker. This is distinct from a standard todo-list, of which there are many, by allowing the user to set up a list of goals they expect to repeat every day. For example "take meds", "practice a language", "do rehab exercises", etc. We want to create a simple prototype for user testing.
+Our new product idea is a variant of a daily recurring-goals tracker. This is distinct from a standard todo-list, of which there are many, by allowing the user to set up a list of goals they expect to repeat every day. For example "take my meds", "practice a language", "do 20 pushups every day", etc. We want to create a simple prototype for user testing.
 
 The daily-goals journal app will be a web application in which users can:
 
@@ -92,11 +92,11 @@ The key goal for this exercise is for you to show us how you think about, design
 
 In terms of evaluation, we want you to show how you can create clean, clear implementations that would allow you and your colleagues to develop, ship and maintain effective, usable features over the long term.
 
-## And lastly ...
+## And lastly …
 
 We can't check if you use AI tools like Copilot or GPT to complete this challenge, but please don't. That's not the way that we work at Verna, and we will want to discuss your design choices with you!
 
-Once you have completed the exercise, please either create a PR against the repo, or send your hiring manager a `zip` or `tar` archive of your project.
+Once you have completed the exercise please either create a PR against the repo, or send your hiring manager an archive of your project.
 
 Good luck!
 
