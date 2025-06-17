@@ -24,7 +24,7 @@ If you're not a GitHub user, or your GitHub account is private:
 
 ## The brief
 
-Our new product idea is a variant of a daily recurring-goals tracker. This is distinct from a standard todo-list, of which there are many, by allowing the user to set up a list of goals they expect to repeat every day. For example "take my meds", "practice a language", "do 20 pushups every day", etc. We want to create a simple prototype for user testing.
+Our new product idea is a variant of a daily recurring-goals tracker. This is distinct from a standard todo-list, of which there are many, by allowing the user to set up a list of goals they expect to repeat every day. For example "take my meds", "practise a language", "do 20 pushups every day", etc. We want to create a simple prototype for user testing.
 
 The daily-goals journal app will be a web application in which users can:
 
