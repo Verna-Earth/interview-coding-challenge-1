@@ -8,7 +8,7 @@ defmodule DailyGoalsTrackerWeb.AchievementLiveTest do
 
   alias DailyGoalsTracker.TrackerFactory, as: TF
 
-  describe "Index" do
+  describe "Show" do
     test "redirect to today's achievements", %{conn: conn} do
       today = Date.utc_today() |> Date.to_iso8601()
 
