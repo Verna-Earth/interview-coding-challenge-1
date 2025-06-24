@@ -1,0 +1,7 @@
+# https://just.systems/man/en/
+
+run:
+  mix phx.server
+
+test *ARGS:
+ mix test {{ARGS}} 

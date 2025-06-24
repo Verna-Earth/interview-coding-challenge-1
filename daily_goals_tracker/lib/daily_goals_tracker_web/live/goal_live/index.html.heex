@@ -1,0 +1,37 @@
+<.header>
+  My Goals
+  <:actions>
+    <.link patch={~p"/goals/new"}>
+      <.button>New Goal</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="goals" rows={@streams.goals}>
+  <:col :let={{_id, goal}} label="Id">{goal.id}</:col>
+  <:col :let={{_id, goal}} label="Name">{goal.name}</:col>
+  <:col :let={{_id, goal}} label="Type">{map_goal_type_display_value(goal.type)}</:col>
+  <:col :let={{_id, goal}} label="Target">{goal.target}</:col>
+  <:action :let={{_id, goal}}>
+    <.link patch={~p"/goals/#{goal}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, goal}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: goal.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="goal-modal" show on_cancel={JS.patch(~p"/goals")}>
+  <.live_component
+    module={DailyGoalsTrackerWeb.GoalLive.FormComponent}
+    id={@goal.id || :new}
+    title={@page_title}
+    action={@live_action}
+    goal={@goal}
+    patch={~p"/goals"}
+  />
+</.modal>
