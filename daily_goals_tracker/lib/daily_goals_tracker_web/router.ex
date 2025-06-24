@@ -28,5 +28,8 @@ defmodule DailyGoalsTrackerWeb.Router do
     live "/goals", GoalLive.Index, :index
     live "/goals/new", GoalLive.Index, :new
     live "/goals/:id/edit", GoalLive.Index, :edit
+
+    live "/reports", ReportLive.Index, :show
+    live "/reports/:goal", ReportLive.Index, :show
   end
 end

@@ -15,7 +15,7 @@ defmodule DailyGoalsTracker.Store do
 
     state = %__MODULE__{
       goals: seed[:goals] || [],
-      achievements: seed[:progress] || []
+      achievements: seed[:achievements] || []
     }
 
     GenServer.start_link(__MODULE__, state, start_opts)

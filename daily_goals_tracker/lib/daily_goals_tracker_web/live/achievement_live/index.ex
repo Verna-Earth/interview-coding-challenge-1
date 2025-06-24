@@ -1,5 +1,6 @@
 defmodule DailyGoalsTrackerWeb.AchievementLive.Index do
   use DailyGoalsTrackerWeb, :live_view
+  import DailyGoalsTracker.Helpers, only: [as_percentage: 2]
 
   alias DailyGoalsTracker.Tracker
 
@@ -71,17 +72,6 @@ defmodule DailyGoalsTrackerWeb.AchievementLive.Index do
       date |> Date.add(1) |> Date.to_iso8601()
     else
       nil
-    end
-  end
-
-  def as_percentage(progress, target) do
-    percentage = progress / target * 100
-    trunked = trunc(percentage)
-
-    if percentage == trunked do
-      trunked
-    else
-      Float.floor(percentage, 2)
     end
   end
 end

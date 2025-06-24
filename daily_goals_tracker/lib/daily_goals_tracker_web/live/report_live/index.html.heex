@@ -1,0 +1,23 @@
+<.header>
+  Achievement Reports
+  <div>
+    <.goal_selector form={@form} goal_names={@goal_names} />
+  </div>
+
+  <p :if={assigns[:goal]} class="py-4">Target: {@goal.target}</p>
+</.header>
+
+<.table :if={assigns[:streams] && @streams[:stats]} id="stats" rows={@streams.stats}>
+  <:col :let={{_id, s}} label="Week">{s.week}</:col>
+  <:col :let={{_id, s}} label="From">{Calendar.strftime(s.from, "%a, %b %d %Y")}</:col>
+  <:col :let={{_id, s}} label="To">{Calendar.strftime(s.to, "%a, %b %d %Y")}</:col>
+  <:col :let={{_id, s}} label="Days recored">{s.number_of_days_recored}</:col>
+  <:col :let={{_id, s}} label="Total recored">
+    {s.total_recored}
+    <span class="pl-2 text-xs text-gray-400">{s.total_percentage_achieved}%</span>
+  </:col>
+  <:col :let={{_id, s}} label="Average recored per day">
+    {s.average_recored}
+    <span class="pl-2 text-xs text-gray-400">{s.average_percentage_achieved}%</span>
+  </:col>
+</.table>
