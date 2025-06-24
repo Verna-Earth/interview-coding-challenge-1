@@ -174,7 +174,7 @@ defmodule DailyGoalsTracker.Tracker do
     Enum.find(achievements, &(&1.goal_id == goal_id)) || Achievement.build(goal_id, selected_date)
   end
 
-  def date_week_number(%Date{} = date) do
+  defp date_week_number(%Date{} = date) do
     date |> Date.to_erl() |> :calendar.iso_week_number()
   end
 end
