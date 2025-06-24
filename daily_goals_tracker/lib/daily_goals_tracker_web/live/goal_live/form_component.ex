@@ -24,7 +24,8 @@ defmodule DailyGoalsTrackerWeb.GoalLive.FormComponent do
           field={@form[:type]}
           type="select"
           label="Type"
-          options={[{"<-- select -->", nil}, {"Yes/No", :binary}, {"Numerical", :numeric}]}
+          prompt="<-- select -->"
+          options={[{"Yes/No", :binary}, {"Numerical", :numeric}]}
           phx-target={@myself}
           phx-change="select-type"
         />
