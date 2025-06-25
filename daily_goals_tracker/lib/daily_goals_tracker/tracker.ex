@@ -11,98 +11,50 @@ defmodule DailyGoalsTracker.Tracker do
   alias DailyGoalsTracker.Store
   alias DailyGoalsTracker.Tracker.{Goal, Achievement, WeekStats}
 
-  @doc """
-  Returns the list of goals.
+  # goals
 
-  ## Examples
-
-      iex> list_goals()
-      [%Goal{}, ...]
-
-  """
   def list_goals do
     Store.list(:goals)
   end
 
-  @doc """
-  Gets a single goal.
-
-  ## Examples
-
-      iex> get_goal(123)
-      %Goal{}
-
-      iex> get_goal(456)
-      nil
-
-  """
   def get_goal(id), do: Store.get(id, :goals)
 
-  def get_goal_achievements(%Goal{} = goal), do: Store.list_by(%{goal_id: goal.id}, :achievements)
-
-  @doc """
-  Creates a goal.
-
-  ## Examples
-
-      iex> create_goal(%{field: value})
-      {:ok, %Goal{}}
-
-      iex> create_goal(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def create_goal(attrs \\ %{}) do
     with {:ok, goal} <- Goal.changeset(%Goal{}, attrs) |> Changeset.apply_action(:insert) do
       Store.create(goal, :goals)
     end
   end
 
-  @doc """
-  Updates a goal.
-
-  ## Examples
-
-      iex> update_goal(goal, %{field: new_value})
-      {:ok, %Goal{}}
-
-      iex> update_goal(goal, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
   def update_goal(%Goal{} = goal, attrs) do
     with {:ok, goal} <- Goal.changeset(goal, attrs) |> Changeset.apply_action(:update) do
       Store.update(goal, :goals)
     end
   end
 
-  @doc """
-  Deletes a goal.
-  """
   def delete_goal(%Goal{} = goal) do
     Store.delete(goal, :goals)
   end
 
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking goal changes.
-
-  ## Examples
-
-      iex> change_goal(goal)
-      %Ecto.Changeset{data: %Goal{}}
-
-  """
   def change_goal(%Goal{} = goal, attrs \\ %{}) do
     Goal.changeset(goal, attrs)
   end
 
-  # def get_goal_achievements(%Goal{} = goal), do: Store.list_by(%{goal_id: goal.id}, :achievements)
+  # achievements
 
   def list_achievements(%Date{} = date) do
     Store.list_by(%{day: date}, :achievements)
   end
 
+  def get_goal_achievements(%Goal{} = goal), do: Store.list_by(%{goal_id: goal.id}, :achievements)
+
   def get_achievement(id), do: Store.get(id, :achievements)
+
+  def create_achievement(attrs \\ %{}) do
+    %Achievement{}
+    |> Achievement.changeset(attrs)
+    |> Changeset.apply_changes()
+    |> Store.create(:achievements)
+  end
 
   def create_or_update_achievement(%Achievement{} = achievement, attrs \\ %{}) do
     achievement
@@ -114,22 +66,11 @@ defmodule DailyGoalsTracker.Tracker do
     end)
   end
 
-  def create_achievement(attrs \\ %{}) do
-    %Achievement{}
-    |> Achievement.changeset(attrs)
-    |> Changeset.apply_changes()
-    |> Store.create(:achievements)
-  end
-
   def update_achievement(%Achievement{} = achievement, attrs) do
     achievement
     |> Achievement.changeset(attrs)
     |> Changeset.apply_changes()
     |> Store.update(:achievements)
-  end
-
-  def remove_achievement(%Achievement{} = achievement) do
-    Store.delete(achievement, :achievements)
   end
 
   def change_achievement(%Achievement{} = achievement, attrs \\ %{}) do
@@ -167,7 +108,7 @@ defmodule DailyGoalsTracker.Tracker do
         average_percentage_achieved: as_percentage(Float.floor(total_recored / 7, 2), goal.target)
       }
     end)
-    |> Enum.sort_by(& &1.week, :desc)
+    |> Enum.sort_by(&Date.to_gregorian_days(&1.from), :desc)
   end
 
   defp get_or_build_achievement(achievements, %Goal{id: goal_id}, selected_date) do
