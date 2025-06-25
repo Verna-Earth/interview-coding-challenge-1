@@ -1,25 +1,23 @@
 <.header>
   {fmt_date(@selected_date)} - Achievements
   <:actions>
-    <div class="space-x-2">
-      <.link
-        patch={~p"/achievements/#{previous_day(@selected_date)}"}
-        class="underline text-gray-500"
-      >
-        Previous day
-      </.link>
+    <.link
+      patch={~p"/achievements/#{previous_day(@selected_date)}"}
+      class="underline text-gray-500 hover:bg-gray-100 rounded-full p-2"
+    >
+      Previous day
+    </.link>
 
-      <%= if next_day(@selected_date) do %>
-        <.link
-          patch={~p"/achievements/#{next_day(@selected_date)}"}
-          class="underline text-gray-500"
-        >
-          Next Day
-        </.link>
-      <% else %>
-        <span class="underline text-gray-500/20">Next Day</span>
-      <% end %>
-    </div>
+    <%= if next_day(@selected_date) do %>
+      <.link
+        patch={~p"/achievements/#{next_day(@selected_date)}"}
+        class="underline text-gray-500 hover:bg-gray-100 rounded-full p-2"
+      >
+        Next Day
+      </.link>
+    <% else %>
+      <span class="underline text-gray-500/20">Next Day</span>
+    <% end %>
   </:actions>
 </.header>
 

@@ -55,7 +55,7 @@ defmodule DailyGoalsTrackerWeb.AchievementLiveTest do
 
       assert has_element?(
                index_live,
-               ~s{#goal-#{goal.id}-achievement-form_progress[type="checkbox"]}
+               ~s{#goal-#{goal.id}-achievement-form input[name="achievement[progress]"][type="checkbox"]}
              )
     end
 
@@ -73,7 +73,7 @@ defmodule DailyGoalsTrackerWeb.AchievementLiveTest do
 
       assert has_element?(
                index_live,
-               ~s{#goal-#{goal.id}-achievement-form_progress[type="number"][value="0"]}
+               ~s{#goal-#{goal.id}-achievement-form input[name="achievement[progress]"][type="number"][value="0"]}
              )
     end
 
@@ -94,7 +94,7 @@ defmodule DailyGoalsTrackerWeb.AchievementLiveTest do
 
       assert has_element?(
                index_live,
-               ~s{#goal-#{goal.id}-achievement-form_progress[type="checkbox"][checked]}
+               ~s{#goal-#{goal.id}-achievement-form input[name="achievement[progress]"][type="checkbox"]:checked}
              )
     end
 
@@ -116,7 +116,7 @@ defmodule DailyGoalsTrackerWeb.AchievementLiveTest do
 
       assert has_element?(
                index_live,
-               ~s{#goal-#{goal.id}-achievement-form_progress[type="number"][value="10"]}
+               ~s{#goal-#{goal.id}-achievement-form input[name="achievement[progress]"][type="number"][value="10"]}
              )
     end
 
@@ -134,7 +134,7 @@ defmodule DailyGoalsTrackerWeb.AchievementLiveTest do
 
       assert index_live
              |> form("#goal-#{goal.id}-achievement-form",
-               achievement: %{progress: "true"}
+               achievement: %{progress: "1"}
              )
              |> render_change()
 
