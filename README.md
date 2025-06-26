@@ -72,7 +72,7 @@ So that I can tell if I'm succeeding at meeting my goals.
 
 This is just a coding exercise. We want to keep things simple. So:
 
-- don't worry about persistent data storage. Feel free to use a JSON file, or ephemeral storage in the app, as the data store
+- you are welcome to make any reasonable choice about data storage. Feel free to use a JSON file, or ephemeral storage in the app, as the data store, or to use a persistent database (such as Postgres) if you prefer
 - don't worry about adding user authentication - assume a fixed user name or email if you need one
 - feel free to create some synthetic historical data to simulate the user having used the app for a few days or weeks (otherwise the reporting feature won't be very interesting!)
 - if there are interesting challenges that you anticipate but don't have time to deal with in the scope of this challenge, feel free to document next steps in a `todo.md` note.
